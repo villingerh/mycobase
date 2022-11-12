@@ -1,0 +1,51 @@
+plugins {
+    id 'groovy'
+}
+
+version = '1.0'
+description = 'Functional tests for Mycobase field mapping database'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    def spockReportsVersion = '2.3.1-groovy-3.0'
+
+    // you can use testRuntimeClasspath if you don't want to use spock-report-specific features in your Specs
+    testImplementation( "com.athaydes:spock-reports:$spockReportsVersion" ) {
+        transitive = false // this avoids affecting your version of Groovy/Spock
+    }
+    // if you don't already have slf4j-api and an implementation of it in the classpath, add this!
+    testImplementation 'org.codehaus.groovy:groovy:3.0.9'
+    testImplementation 'org.codehaus.groovy:groovy-json:3.0.9'
+    testImplementation 'org.codehaus.groovy:groovy-all:3.0.9'
+    testImplementation 'org.spockframework:spock-core:2.1-groovy-3.0'
+    testImplementation 'org.slf4j:slf4j-api:1.7.30'
+    testRuntimeClasspath 'org.slf4j:slf4j-simple:1.7.30'
+}
+
+tasks.withType(Test) {
+
+    if (project.properties.containsKey('maxParallelForks')) {
+        maxParallelForks = project.properties['maxParallelForks'] as int
+    }
+    if (System.properties.containsKey('maxParallelForks')) {
+        maxParallelForks = System.properties['maxParallelForks'] as int
+    }
+
+    systemProperty 'testDebug', System.properties['testDebug']
+
+    testLogging {
+        showStandardStreams true
+        exceptionFormat "full"
+        events 'started', 'passed', 'skipped', 'failed'
+    }
+}
+
+task mandatoryChecks(type: Test) {
+    useJUnitPlatform()
+    include 'functional/CommonFunctions/**'
+    include 'functional/mandatory/**'
+}

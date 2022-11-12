@@ -1,0 +1,63 @@
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
+//
+// Mycobase devcontainer
+// 
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
+//// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.106.0/containers/cpp
+{
+	"build": { "dockerfile": "Dockerfile" },
+	"name": "MycobaseDev",
+	"mounts": [
+		"source=${localEnv:HOME}/.gitconfig,target=/home/builder/.gitconfig,type=bind,consistency=cached",
+		"source=${localEnv:HOME}/.git-credentials,target=/home/builder/.git-credentials,type=bind,consistency=cached",
+		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+	],
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		// // // // // // // // // //
+		//
+		// Extensions related to IDE, Editor
+		//
+		// // // // // // // // // //
+		//
+		// VSCode & Editor settings
+		//
+		"workbench.statusBar.visible": true,
+		"workbench.tree.indent": 20,
+		"terminal.integrated.enableFileLinks": true,
+		"terminal.integrated.defaultProfile.linux": "bash"
+	},
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		//
+		//
+		// // // // // // // // // // // // // // // // // // // // 
+		// Local Development - Extensions
+		// // // // // // // // // // // // // // // // // // // // 
+		//
+		//
+		// Base tooling
+		//
+		"eamodio.gitlens@12.1.2", // Supercharge Git within VS Code — Visualize code authorship at a glance via Git blame annotations and CodeLens, seamlessly navigate and explore Git repositories, gain valuable insights via rich.
+		"letmaik.git-tree-compare@1.14.0", // Diff your worktree against a branch, tag, or commit in a tree -- especially useful for pull request preparation or merge preview.
+		"donjayamanne.githistory@0.6.19", // View git log, file history, compare branches or commits.
+		//
+		// Documentation & Authoring
+		//
+		"ms-vscode.live-server@0.2.13", // Hosts a local server in your workspace for you to preview your webpages on.		
+		"analytic-signal.preview-pdf@1.0.0", // Preview Portable Document Format (.pdf) files in VSCode.
+		"ms-vscode.hexeditor@1.9.7", // Allows viewing and editing files in a hex editor.
+		"natqe.reload@0.0.6", // Adds a reload button to the bottom bar.
+		"github.vscode-pull-request-github",
+		"dotjoshjohnson.xml",
+		"vscjava.vscode-gradle",
+		"naco-siren.gradle-language",
+		"nicolasvuillamy.vscode-groovy-lint",
+		"bierner.markdown-preview-github-styles",
+		"bierner.github-markdown-preview"
+	],
+	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "builder"
+	}
+}

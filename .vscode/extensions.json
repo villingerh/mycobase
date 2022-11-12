@@ -1,0 +1,9 @@
+{
+  "recommendations": ["github.vscode-pull-request-github",
+    "dotjoshjohnson.xml",
+    "ms-azuretools.vscode-docker",
+    "naco-siren.gradle-language",
+    "ms-vscode-remote.vscode-remote-extensionpack",
+    "bierner.markdown-preview-github-styles"
+  ]
+}
